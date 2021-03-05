@@ -15,37 +15,28 @@ public class SortingImpl implements Sorting<Repository> {
         this.repository = repository;
     }
 
-    //По имени
-    //По убыванию
     private Comparator<Person> compareByNameDescending = (Person o1, Person o2) -> {
         return String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName());
     };
 
-    //По возрастанию
     private Comparator<Person> compareByNameAscending = (Person o1, Person o2) -> {
         return String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName()) * (-1);
     };
 
-    //По дате рождения
-    //По убыванию
     private Comparator<Person> compareByDateOfBirthFromNewestToOldest = (Person o1, Person o2) -> {
         return o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) * (-1);
     };
 
-    //По возростанию
     private Comparator<Person> compareByDateOfBirthFromOldestToNewest = (Person o1, Person o2) -> {
         return o1.getDateOfBirth().compareTo(o2.getDateOfBirth());
     };
 
-    //По полу
-    //Сначала MALE
     private Comparator<Person> compareByGenderMaleFemale = (Person o1, Person o2) -> {
         if (o1.getGender() == Gender.MALE && o2.getGender() == Gender.MALE) return 0;
         else if (o1.getGender() == Gender.MALE && o2.getGender() == Gender.FEMALE) return -1;
         return 1;
     };
 
-    //Сначала FEMALE
     private Comparator<Person> compareByGenderFemaleMale = (Person o1, Person o2) -> {
         if (o1.getGender() == Gender.FEMALE && o2.getGender() == Gender.FEMALE) return 0;
         else if (o1.getGender() == Gender.FEMALE && o2.getGender() == Gender. MALE) return -1;

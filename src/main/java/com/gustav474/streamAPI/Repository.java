@@ -5,7 +5,6 @@ import com.gustav474.streamAPI.Interfaces.Filtering;
 import com.gustav474.streamAPI.Interfaces.Paginating;
 import com.gustav474.streamAPI.Interfaces.Sorting;
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
