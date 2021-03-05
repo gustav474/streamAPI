@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor
-public class FillingRepositoryImpl implements FillingRepository<Repository, Person> {
+public class FillingRepositoryFromCodeImpl implements FillingRepository<Repository, Person> {
     private Repository<Person> repository;
 
     @Override

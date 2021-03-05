@@ -1,4 +1,4 @@
-import com.gustav474.streamAPI.Impls.FillingRepositoryImpl;
+import com.gustav474.streamAPI.Impls.FillingRepositoryFromCodeImpl;
 import com.gustav474.streamAPI.Impls.FilteringImpl;
 import com.gustav474.streamAPI.Gender;
 import com.gustav474.streamAPI.Impls.PaginatingImpl;
@@ -34,7 +34,7 @@ public class Maintest {
         repository.setFilter(new FilteringImpl(repository));
         repository.setSorter(new SortingImpl(repository));
         repository.setPaginator(new PaginatingImpl(repository));
-        repository.setFiller(new FillingRepositoryImpl(repository));
+        repository.setFiller(new FillingRepositoryFromCodeImpl(repository));
         repository.getFiller().filling(listOfPersons);
     }
 
