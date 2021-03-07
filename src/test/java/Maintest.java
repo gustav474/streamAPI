@@ -22,14 +22,16 @@ public class Maintest {
     Person person8 = new Person("Harry", Gender.MALE, LocalDate.of(1990, 9, 19));
     Person person9 = new Person("Lila", Gender.FEMALE, LocalDate.of(1983, 6, 20));
     Person person10 = new Person("Hermes", Gender.MALE, LocalDate.of(1977, 2, 18));
+    Person person11 = null;
+
     Repository<Person> repository = new Repository();
     List<Person> listOfPersons;
 
     @Before
     public void before() {
-        listOfPersons  = new ArrayList();
+        listOfPersons  = new ArrayList<>();
         Collections.addAll(listOfPersons, person1, person2, person3, person4, person5, person6, person7, person8,
-                person9, person10);
+                person9, person10, person11);
 
         repository.setFilter(new FilteringImpl(repository));
         repository.setSorter(new SortingImpl(repository));
@@ -38,8 +40,6 @@ public class Maintest {
         repository.getFiller().filling(listOfPersons);
     }
 
-    // По имени
-    // По убыванию
     @Test
     public void sortingByNameDescending() {
         List<Person> sourceList = new ArrayList<>();
@@ -51,11 +51,10 @@ public class Maintest {
                 person6, person5);
 
         List<Person> sortedRepository = repository.getSorter().sortingByNameDescending().getModifiedList();
-        Assert.assertEquals(sortedRepository, expectedList);
+        Assert.assertEquals(expectedList, sortedRepository);
         Assert.assertEquals(repository.getList(), sourceList);
     }
 
-    // По возростанию
     @Test
     public void sortingByNameAscending() {
         List<Person> expectedList = new ArrayList<>();
@@ -66,8 +65,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //По дате
-    //По убыванию
     @Test
     public void sortingByDateOfBirthFromNewestToOldest() {
         List<Person> expectedList = new ArrayList<>();
@@ -78,7 +75,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //По возростанию
     @Test
     public void sortingByDateOfBirthFromOldestToNewest() {
         List<Person> expectedList = new ArrayList<>();
@@ -89,8 +85,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //По полу
-    //MALE - FEMALE
     @Test
     public void sortingByGenderMaleFemale() {
         List<Person> expectedList = new ArrayList<>();
@@ -101,7 +95,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //FEMALE - MALE
     @Test
     public void sortingByGenderFemaleMale() {
         List<Person> expectedList = new ArrayList<>();
@@ -112,7 +105,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //FILTERING
     @Test
     public void filteringByDateOfBirthAfter() {
         List<Person> expectedList = new ArrayList<>();
@@ -196,7 +188,6 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    //PAGINNATION
     @Test
     public void pagination() {
         List<Person> expectedList = new ArrayList<>();
@@ -208,6 +199,15 @@ public class Maintest {
 
     @Test
     public void paginationLastPage() {
+        List<Person> expectedList = new ArrayList<>();
+        Collections.addAll(expectedList, person9, person10);
+
+        repository.getPaginator().pagination(4, 3);
+        Assert.assertEquals(expectedList, repository.getModifiedList());
+    }
+
+    @Test
+    public void ExceptionEmptyList() {
         List<Person> expectedList = new ArrayList<>();
         Collections.addAll(expectedList, person9, person10);
 

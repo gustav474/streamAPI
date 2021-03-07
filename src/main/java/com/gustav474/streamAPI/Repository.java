@@ -7,6 +7,7 @@ import com.gustav474.streamAPI.Interfaces.Sorting;
 import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class Repository<T extends Person> {
@@ -15,6 +16,12 @@ public class Repository<T extends Person> {
     private Paginating paginator;
     private FillingRepository filler;
 
-    private List<T> list;
+    private List<T> list = new ArrayList<>();
     private List<T> modifiedList = new ArrayList<>();
+
+    //Remove all null elements
+    public void setList(List<T> list) {
+        list.removeIf(Objects::isNull);
+        this.list = list;
+    }
 }
