@@ -20,7 +20,8 @@ public class Repository<T extends Person> {
     private List<T> modifiedList = new ArrayList<>();
 
     //Remove all null elements
-    public void setList(List<T> list) {
+    public void setList(List<T> list) throws MoreThanTwoElementsException {
+        if (list.size() < 2) throw new MoreThanTwoElementsException("Repository must have minimum two elements");
         list.removeIf(Objects::isNull);
         this.list = list;
     }

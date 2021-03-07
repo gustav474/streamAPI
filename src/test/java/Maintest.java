@@ -3,6 +3,7 @@ import com.gustav474.streamAPI.Impls.FilteringImpl;
 import com.gustav474.streamAPI.Gender;
 import com.gustav474.streamAPI.Impls.PaginatingImpl;
 import com.gustav474.streamAPI.Impls.SortingImpl;
+import com.gustav474.streamAPI.MoreThanTwoElementsException;
 import com.gustav474.streamAPI.Person;
 import com.gustav474.streamAPI.Repository;
 import org.junit.Assert;
@@ -37,7 +38,11 @@ public class Maintest {
         repository.setSorter(new SortingImpl(repository));
         repository.setPaginator(new PaginatingImpl(repository));
         repository.setFiller(new FillingRepositoryFromCodeImpl(repository));
-        repository.getFiller().filling(listOfPersons);
+        try {
+            repository.getFiller().filling(listOfPersons);
+        } catch (MoreThanTwoElementsException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -206,12 +211,9 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
-    @Test
-    public void ExceptionEmptyList() {
-        List<Person> expectedList = new ArrayList<>();
-        Collections.addAll(expectedList, person9, person10);
-
-        repository.getPaginator().pagination(4, 3);
-        Assert.assertEquals(expectedList, repository.getModifiedList());
+    @Test(expected = MoreThanTwoElementsException.class)
+    public void ExceptionEmptyList() throws MoreThanTwoElementsException {
+        List<Person> emptyList = new ArrayList<>();
+        repository.getFiller().filling(emptyList);
     }
 }
