@@ -4,7 +4,6 @@ import com.gustav474.streamAPI.Gender;
 import com.gustav474.streamAPI.Interfaces.Sorting;
 import com.gustav474.streamAPI.Person;
 import com.gustav474.streamAPI.Repository;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -15,21 +14,17 @@ public class SortingImpl implements Sorting<Repository> {
         this.repository = repository;
     }
 
-    private Comparator<Person> compareByNameDescending = (Person o1, Person o2) -> {
-        return String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName());
-    };
+    private Comparator<Person> compareByNameDescending = (Person o1, Person o2) ->
+        String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName());
 
-    private Comparator<Person> compareByNameAscending = (Person o1, Person o2) -> {
-        return String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName()) * (-1);
-    };
+    private Comparator<Person> compareByNameAscending = (Person o1, Person o2) ->
+        String.CASE_INSENSITIVE_ORDER.compare(o1.getName(), o2.getName()) * (-1);
 
-    private Comparator<Person> compareByDateOfBirthFromNewestToOldest = (Person o1, Person o2) -> {
-        return o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) * (-1);
-    };
+    private Comparator<Person> compareByDateOfBirthFromNewestToOldest = (Person o1, Person o2) ->
+        o1.getDateOfBirth().compareTo(o2.getDateOfBirth()) * (-1);
 
-    private Comparator<Person> compareByDateOfBirthFromOldestToNewest = (Person o1, Person o2) -> {
-        return o1.getDateOfBirth().compareTo(o2.getDateOfBirth());
-    };
+    private Comparator<Person> compareByDateOfBirthFromOldestToNewest = (Person o1, Person o2) ->
+        o1.getDateOfBirth().compareTo(o2.getDateOfBirth());
 
     private Comparator<Person> compareByGenderMaleFemale = (Person o1, Person o2) -> {
         if (o1.getGender() == Gender.MALE && o2.getGender() == Gender.MALE) return 0;

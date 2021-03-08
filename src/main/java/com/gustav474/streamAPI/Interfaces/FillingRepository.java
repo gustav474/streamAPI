@@ -1,6 +1,6 @@
 package com.gustav474.streamAPI.Interfaces;
 
-import com.gustav474.streamAPI.MoreThanTwoElementsException;
+import com.gustav474.streamAPI.Exceptions.MoreThanTwoElementsException;
 import com.gustav474.streamAPI.Person;
 import com.gustav474.streamAPI.Repository;
 import java.util.List;

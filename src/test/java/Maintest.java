@@ -3,7 +3,7 @@ import com.gustav474.streamAPI.Impls.FilteringImpl;
 import com.gustav474.streamAPI.Gender;
 import com.gustav474.streamAPI.Impls.PaginatingImpl;
 import com.gustav474.streamAPI.Impls.SortingImpl;
-import com.gustav474.streamAPI.MoreThanTwoElementsException;
+import com.gustav474.streamAPI.Exceptions.MoreThanTwoElementsException;
 import com.gustav474.streamAPI.Person;
 import com.gustav474.streamAPI.Repository;
 import org.junit.Assert;
@@ -25,7 +25,7 @@ public class Maintest {
     Person person10 = new Person("Hermes", Gender.MALE, LocalDate.of(1977, 2, 18));
     Person person11 = null;
 
-    Repository<Person> repository = new Repository();
+    Repository<Person> repository = new Repository<>();
     List<Person> listOfPersons;
 
     @Before

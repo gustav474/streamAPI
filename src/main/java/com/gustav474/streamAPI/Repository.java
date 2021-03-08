@@ -1,5 +1,6 @@
 package com.gustav474.streamAPI;
 
+import com.gustav474.streamAPI.Exceptions.MoreThanTwoElementsException;
 import com.gustav474.streamAPI.Interfaces.FillingRepository;
 import com.gustav474.streamAPI.Interfaces.Filtering;
 import com.gustav474.streamAPI.Interfaces.Paginating;
@@ -19,7 +20,7 @@ public class Repository<T extends Person> {
     private List<T> list = new ArrayList<>();
     private List<T> modifiedList = new ArrayList<>();
 
-    //Remove all null elements
+    //Custom setter for removing all null elements in list
     public void setList(List<T> list) throws MoreThanTwoElementsException {
         if (list.size() < 2) throw new MoreThanTwoElementsException("Repository must have minimum two elements");
         list.removeIf(Objects::isNull);
