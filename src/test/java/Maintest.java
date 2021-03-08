@@ -211,6 +211,13 @@ public class Maintest {
         Assert.assertEquals(expectedList, repository.getModifiedList());
     }
 
+    @Test
+    public void paginationFirstPage() {
+        repository.getPaginator().pagination(11, 1);
+        Assert.assertEquals(repository.getList(), repository.getModifiedList());
+    }
+
+
     @Test(expected = MoreThanTwoElementsException.class)
     public void ExceptionEmptyList() throws MoreThanTwoElementsException {
         List<Person> emptyList = new ArrayList<>();
