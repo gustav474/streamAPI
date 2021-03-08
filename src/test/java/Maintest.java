@@ -216,4 +216,11 @@ public class Maintest {
         List<Person> emptyList = new ArrayList<>();
         repository.getFiller().filling(emptyList);
     }
+
+    @Test(expected = MoreThanTwoElementsException.class)
+    public void ExceptionOneElementList() throws MoreThanTwoElementsException {
+        List<Person> emptyList = new ArrayList<>();
+        emptyList.add(person1);
+        repository.getFiller().filling(emptyList);
+    }
 }
